@@ -22,6 +22,7 @@ public class BallController : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             Destroy(this.gameObject);
+            UIManager.Instance.UpdateScore(this.gameObject);
             Instantiate(_explosion, transform.position, _explosion.transform.rotation);
         }
     }
