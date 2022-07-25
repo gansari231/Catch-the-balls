@@ -15,10 +15,9 @@ public class PlayerMovement : MonoBehaviour
     void Movement()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
-        direction.Normalize();
-        transform.Translate(direction * 2 * Time.deltaTime);
+        Vector3 movement = new Vector3(horizontalInput, transform.position.y, transform.position.z);
+        //movement.Normalize();
+        transform.Translate(movement * 1.5f * Time.deltaTime);
     }
 }

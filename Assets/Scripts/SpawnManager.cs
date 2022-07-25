@@ -12,10 +12,10 @@ public class SpawnManager : SingletonGeneric<SpawnManager>
 
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 5.0f, _duration);
+        InvokeRepeating("SpawnBall", 5.0f, _duration);
     }
 
-    void SpawnEnemy()
+    void SpawnBall()
     {     
         int _ballIndex = Random.Range(0, _ballPrefabs.Length);
         float _spawnPosX = Random.Range(2.0f, -2.0f);

@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMovement : MonoBehaviour
+public class BallController : MonoBehaviour
 {
+    [SerializeField]
+    GameObject _explosion;
+
     void Update()
     {
         Movement();
@@ -14,11 +17,12 @@ public class BallMovement : MonoBehaviour
         transform.Translate(Vector3.down * 1.5f * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
             Destroy(this.gameObject);
+            Instantiate(_explosion, transform.position, _explosion.transform.rotation);
         }
     }
 }
