@@ -22,7 +22,6 @@ public class TimerManager : MonoBehaviour
     {
         if(_endTime > 0)
         {
-            Debug.Log("in UP");
             _endTime -= Time.deltaTime;
             _timer.value = _endTime;
         }
