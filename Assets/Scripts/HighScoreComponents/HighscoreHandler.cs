@@ -39,7 +39,7 @@ public class HighscoreHandler : MonoBehaviour
 
     public void UpdateMaxHighscore(HighscoreElement element)
     {
-        for (int i = 0; i < maxCount; i++)
+        for (int i = 0; i <= maxCount; i++)
         {
             if (i >= highscoreList.Count || element.points > highscoreList[i].points)
             {

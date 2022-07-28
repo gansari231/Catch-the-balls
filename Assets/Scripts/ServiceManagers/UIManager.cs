@@ -21,13 +21,15 @@ public class UIManager : SingletonGeneric<UIManager>
     HighscoreElement highscoreElement;
 
     [SerializeField]
-    GameObject _gameArea;
+    GameObject _gameAreaPanel;
     [SerializeField]
-    GameObject _gameComponents;
+    GameObject _gameComponentsPanel;
     [SerializeField]
-    GameObject _mainMenu;
+    GameObject _mainMenuPanel;
     [SerializeField]
     GameObject _player;
+    [SerializeField]
+    GameObject _gameCompletePanel;
     [SerializeField]
     GameObject _highscoreTable;
 
@@ -43,9 +45,9 @@ public class UIManager : SingletonGeneric<UIManager>
     {
         Time.timeScale = 1;
         startGame = true;
-        _mainMenu.SetActive(false);
-        _gameArea.SetActive(true);
-        _gameComponents.SetActive(true);
+        _mainMenuPanel.SetActive(false);
+        _gameAreaPanel.SetActive(true);
+        _gameComponentsPanel.SetActive(true);
         _player.SetActive(true);
         SpawnManager.Instance.StartGame();
     }
@@ -54,11 +56,10 @@ public class UIManager : SingletonGeneric<UIManager>
     {
         Time.timeScale = 1;
         InputHandler.Instance._nameInput.text = "";
-        _gameCompleteText.gameObject.SetActive(false);
         startGame = false;
-        _mainMenu.SetActive(true);
-        _gameArea.SetActive(false);
-        _gameComponents.SetActive(false);
+        _mainMenuPanel.SetActive(true);
+        _gameAreaPanel.SetActive(false);
+        _gameComponentsPanel.SetActive(false);
         _player.SetActive(false);
         _gameCompleteText.gameObject.SetActive(true);
     }
@@ -93,7 +94,7 @@ public class UIManager : SingletonGeneric<UIManager>
     public void GameCompleteSequence()
     {
         _gameCompleteText.text = _gameCompleteText.text + _score + " points!!!!!";
-        _gameCompleteText.gameObject.SetActive(true);
+        _gameCompletePanel.SetActive(true);
         highscoreHandler.UpdateMaxHighscore(new HighscoreElement(InputHandler.Instance._nameInput.text, _score));
         _player.SetActive(false);
         StartCoroutine(GameEnd());
@@ -102,18 +103,24 @@ public class UIManager : SingletonGeneric<UIManager>
     IEnumerator GameEnd()
     {
         yield return new WaitForSeconds(5.0f);
+        _gameCompletePanel.SetActive(false);
         RestartGame();
     }
 
     public void ShowHighScoreTable()
     {
-        _mainMenu.SetActive(false);
+        _mainMenuPanel.SetActive(false);
         _highscoreTable.SetActive(true);
     }
 
     public void CloseHighScoreTable()
     {
-        _mainMenu.SetActive(true);
+        _mainMenuPanel.SetActive(true);
         _highscoreTable.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

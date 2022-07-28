@@ -10,6 +10,12 @@ public class PlayerController : SingletonGeneric<PlayerController>
     void FixedUpdate()
     {
         Movement();
+        
+    }
+
+    void LateUpdate()
+    {
+        SetPlayerBounds();
     }
 
     void Movement()
@@ -23,8 +29,21 @@ public class PlayerController : SingletonGeneric<PlayerController>
     {
         if(collision.gameObject.GetComponent<BallController>())
         {
+            AudioManager.Instance.PlayCollectableSound();
             _ballsCollected++;
             EventHandler.Instance.InvokeOnBallCollected();
+        }
+    }
+
+    void SetPlayerBounds()
+    {
+        if (transform.position.x >= 2.5f)
+        {
+            transform.position = new Vector3(2.5f, transform.position.y, 0);
+        }
+        else if (transform.position.x <= -2.5f)
+        {
+            transform.position = new Vector3(-2.5f, transform.position.y, 0);
         }
     }
 }

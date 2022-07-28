@@ -16,12 +16,12 @@ public class SpawnManager : SingletonGeneric<SpawnManager>
     }
 
     void SpawnBall()
-    {     
+    {
         if(TimerManager.Instance._endTime > 0 && UIManager.Instance.startGame)
         {
             int _ballIndex = Random.Range(0, _ballPrefabs.Length);
             float _spawnPosX = Random.Range(1.5f, -1.5f);
-            Instantiate(_ballPrefabs[_ballIndex], new Vector3(_spawnPosX, _spawnPosY, 0), Quaternion.identity);
+            Instantiate(_ballPrefabs[_ballIndex], new Vector3(_spawnPosX, _spawnPosY, 0), Quaternion.identity);           
         }    
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TimerManager : SingletonGeneric<TimerManager>
 {
-    float _startTime = 15;
+    float _startTime = 20;
     public float _endTime;
 
     [SerializeField]
@@ -28,7 +28,6 @@ public class TimerManager : SingletonGeneric<TimerManager>
         else if(Mathf.Abs(_timer.value) <= 0 && UIManager.Instance.startGame)
         {
             _timer.value = 1;           
-            Debug.Log("In IF");
             InputHandler.Instance.AddDataToList(UIManager.Instance._score);
             UIManager.Instance.GameCompleteSequence();
 

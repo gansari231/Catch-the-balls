@@ -28,7 +28,7 @@ public static class FileHandler
 
     static string GetPath(string fileName)
     {
-        return Application.persistentDataPath + "/" + fileName;
+        return "E:/GitHub_Desktop/Catch-the-balls/Assets/" + fileName;
     }
 
     static void WriteFile(string path, string content)
